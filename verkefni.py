@@ -1,4 +1,5 @@
 import pymysql
+import bottle
 from bottle import *
 import os
 
@@ -106,7 +107,7 @@ def server_static(filename):
 
 try:
     # Heroku run
-    run(host="0.0.0.0", port=os.environ.get("PORT"))
+    bottle.run(host="0.0.0.0", port=os.environ.get("PORT"))
 except TypeError:
     # Local (development) run
-    run(debug=True, reloader=True)
+    bottle.run(debug=True, reloader=True)
