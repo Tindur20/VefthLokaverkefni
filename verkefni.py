@@ -105,6 +105,8 @@ def server_static(filename):
     return static_file(filename, root='./static')
 
 try:
-    run(host='0.0.0.0', port=os.environ.get('PORT'))
-except:
-    run(debug=True)
+    # Heroku run
+    run(host="0.0.0.0", port=os.environ.get("PORT"))
+except TypeError:
+    # Local (development) run
+    run(debug=True, reloader=True)
