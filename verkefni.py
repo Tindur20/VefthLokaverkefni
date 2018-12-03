@@ -2,7 +2,6 @@ import pymysql
 import bottle
 import os
 from bottle import *
-from sys import argv
 
 @route('/')
 def index():
@@ -106,13 +105,9 @@ def edit_story():
 def server_static(filename):
     return static_file(filename, root='./static')
 
-#try:
-#    # Heroku run
-#    bottle.run(host="0.0.0.0", port=os.environ.get("PORT"))
-#except TypeError:
-#    # Local (development) run
-#    bottle.run(debug=True, reloader=True)
-
-
-bottle.run(host='0.0.0.0', port=argv[1])
-#bottle.run(debug=True, reloader=True)
+try:
+    # Heroku run
+    bottle.run(host="0.0.0.0", port=os.environ.get("PORT"))
+except TypeError:
+    # Local (development) run
+    bottle.run(debug=True, reloader=True)
